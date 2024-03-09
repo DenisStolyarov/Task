@@ -37,7 +37,7 @@ public class CustomTask
 
             if (_continuation is not null)
             {
-                ThreadPool.QueueUserWorkItem(_ =>
+                CustomThreadPool.QueueUserWorkItem(() =>
                 {
                     if (_executionContext is not null)
                     {
@@ -58,7 +58,7 @@ public class CustomTask
         {
             if (_completed)
             {
-                ThreadPool.QueueUserWorkItem(_ => action(this));
+                CustomThreadPool.QueueUserWorkItem(() => action(this));
             }
             else if (_continuation is not null)
             {
@@ -98,7 +98,7 @@ public class CustomTask
     {
         CustomTask task = new();
 
-        ThreadPool.QueueUserWorkItem(_ =>
+        CustomThreadPool.QueueUserWorkItem(() =>
         {
             try
             {
